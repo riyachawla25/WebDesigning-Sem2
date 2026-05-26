@@ -1,39 +1,43 @@
-// Change the heading text based on user input
-function changeHeading() {
-    let newHeading = document.getElementById("newHeading").value;
-    if (newHeading !== "") {
-        document.getElementById("heading").innerHTML = newHeading;
+let heading = document.getElementById("mainHeading");
+let paragraph = document.getElementById("paragraph");
+let input = document.getElementById("userInput");
+
+let fontSize = 16;
+
+// Change heading text (onclick using addEventListener)
+document.getElementById("changeTextBtn").addEventListener("click", function () {
+    if (input.value !== "") {
+        heading.innerHTML = input.value;
     }
-}
+});
 
-// Change background to a random color
-function changeBackground() {
-    let randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0");
-    document.body.style.backgroundColor = randomColor;
-}
+// Change background color
+document.getElementById("bgColorBtn").onclick = function () {
+    document.body.style.backgroundColor =
+        "#" + Math.floor(Math.random() * 16777215).toString(16);
+};
 
-// Increase font size of the heading by 4px each click
-function increaseFontsize() {
-    let heading = document.getElementById("heading");
-    let currentSize = parseFloat(window.getComputedStyle(heading).fontSize);
-    heading.style.fontSize = (currentSize + 4) + "px";
-}
+// Increase font size
+document.getElementById("fontSizeBtn").addEventListener("click", function () {
+    fontSize += 2;
+    paragraph.style.fontSize = fontSize + "px";
+});
 
-// show/hide of the paragraph
-function showHidePara() {
-    let para = document.getElementById("para");
-    if (para.style.display === "none") {
-        para.style.display = "block";
+// Show/Hide paragraph
+document.getElementById("toggleBtn").addEventListener("click", function () {
+    if (paragraph.style.display === "none") {
+        paragraph.style.display = "block";
     } else {
-        para.style.display = "none";
+        paragraph.style.display = "none";
     }
-}
+});
 
-// Reset everything to default
-function reset() {
-    document.getElementById("heading").innerHTML = "Welcome to JavaScript Lab";
-    document.getElementById("heading").style.fontSize = "";
-    document.body.style.backgroundColor = "";
-    document.getElementById("para").style.display = "block";
-    document.getElementById("newHeading").value = "";
-}
+// Reset page
+document.getElementById("resetBtn").addEventListener("click", function () {
+    heading.innerHTML = "Welcome to JavaScript Lab";
+    paragraph.style.display = "block";
+    paragraph.style.fontSize = "16px";
+    document.body.style.backgroundColor = "#f4f4f4";
+    input.value = "";
+    fontSize = 16;
+});
